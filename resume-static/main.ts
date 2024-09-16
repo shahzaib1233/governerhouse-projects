@@ -1,17 +1,19 @@
-var toggleButtons = document.querySelectorAll(".toggleButton");
-var toggleSections = document.querySelectorAll(".toggleSection");
+const toggleButtons = document.querySelectorAll<HTMLButtonElement>(".toggleButton");
+const toggleSections = document.querySelectorAll<HTMLDivElement>(".toggleSection");
 
-toggleButtons.forEach(function(button, index) {
-    button.addEventListener("click", function() {
-        var section = toggleSections[index];
-        var sectionStyle = window.getComputedStyle(section);
+toggleButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        const section = toggleSections[index];
+        if (section) {
+            const sectionStyle = window.getComputedStyle(section);
 
-        if (sectionStyle.display === "none") {
-            section.style.display = "block";
-            button.textContent = "Hide Info";
-        } else {
-            section.style.display = "none";
-            button.textContent = "Show Info";
+            if (sectionStyle.display === "none") {
+                section.style.display = "block";
+                button.textContent = "Hide Info";
+            } else {
+                section.style.display = "none";
+                button.textContent = "Show Info";
+            }
         }
     });
 });
