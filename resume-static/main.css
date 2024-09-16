@@ -11,18 +11,18 @@ body {
     border-radius: 13px;
     display: flex;
 }
-.resume-heading {
-    width: 900px;
-    margin: 0 auto;
-    padding: 25px;
-    margin-bottom: -30px;
-    background-color: black;
-    color: white;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    border-radius: 10px;
-}
+    .resume-heading {
+        width: 900px;
+        margin: 0 auto;
+        padding: 25px;
+        margin-bottom: -30px;
+        background-color: black;
+        color: white;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        border-radius: 10px;
+    }
 
 
 
@@ -116,4 +116,58 @@ body {
     text-align: left;
     align-items: left;
     padding: 3%;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .side-bar-left{
+        width: 95%; 
+        margin: 0; 
+        font-size: 35px;
+        padding: 30px;
+    }
+
+ 
+
+
+    .side-bar-right{
+        width: 100%; 
+        margin: 0; 
+        font-size: 35px;
+    }
+
+
+    .side-bar-left {
+        margin-bottom: 20px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .resume-heading {
+        font-size: 3em; 
+        padding: 15px;
+    }
+    .information-right
+    {
+        text-align: left;
+    }
+    .side-bar-left, .side-bar-right {
+        padding: 5px; 
+        
+        
+    }
+
+    .main-img {
+        height: 200px;
+        width: 200px;
+    }
+
+    .details ul li {
+        padding: 15px;
+    }
+    
 }
