@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Dynamic Resume for Governor House Project</title>
+        <link rel="stylesheet" href="form.css">
+    </head>
+    <body>
+
+        <div class="custom_form_container">
+            <h2 class="form_heading">User Information Form</h2>
+            <form id="userForm" method="GET" onsubmit="processForm(event)" enctype="multipart/form-data"
+                class="custom_form">
+
+                <div class="form_group">
+                    <label for="profile_pic">Profile Picture:</label>
+                    <input type="file" id="profile_pic" name="profile_pic"
+                        accept="image/*" required
+                        onchange="showProfilePicture(event)">
+                    <br>
+                    <!-- Image Preview -->
+                    <img id="profile_pic_preview" src="#"
+                        alt="Profile Picture Preview"
+                        style="display:none; max-width: 200px; margin-top: 10px;">
+                </div>
+
+                <div class="form_group">
+                    <label for="name" class="form_label">Name</label>
+                    <input type="text" id="name" name="name"
+                        placeholder="Enter your name" required
+                        class="form_input">
+                </div>
+
+                <div class="form_group">
+                    <label for="contact" class="form_label">Contact
+                        Number</label>
+                    <input type="tel" id="contact" name="contact"
+                        placeholder="Enter your contact number" required
+                        class="form_input">
+                </div>
+
+                <div class="form_group">
+                    <label for="email" class="form_label">Email</label>
+                    <input type="email" id="email" name="email"
+                        placeholder="Enter your email" required
+                        class="form_input">
+                </div>
+
+                <div class="form_group">
+                    <label for="address" class="form_label">Address</label>
+                    <textarea id="address" name="address" rows="3"
+                        placeholder="Enter your address"
+                        class="form_textarea"></textarea>
+                </div>
+
+                <div class="form_group">
+                    <label for="education" class="form_label">Education
+                        Details</label>
+                    <textarea id="education" name="education" rows="3"
+                        placeholder="Enter your education details"
+                        class="form_textarea"></textarea>
+                </div>
+
+                <div class="form_group">
+                    <label for="experience"
+                        class="form_label">Experience</label>
+                    <textarea id="experience" name="experience" rows="3"
+                        placeholder="Enter your experience"
+                        class="form_textarea"></textarea>
+                </div>
+
+                <div class="form_group">
+                    <label for="projects" class="form_label">Projects
+                        Completed</label>
+                    <textarea id="projects" name="projects" rows="3"
+                        placeholder="List the projects you've completed"
+                        class="form_textarea"></textarea>
+                </div>
+
+                <div class="form_group">
+                    <button type="submit" class="form_button">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+        function showProfilePicture(event) {
+            const input = event.target;
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                const img = document.getElementById('profile_pic_preview');
+                img.src = reader.result;
+                img.style.display = 'block';  
+            }
+
+            if (input.files && input.files[0]) {
+                reader.readAsDataURL(input.files[0]); 
+            }
+        }
+
+        function processForm(event) {
+            event.preventDefault(); 
+
+            const name = document.getElementById("name").value;
+            const contact = document.getElementById("contact").value;
+            const email = document.getElementById("email").value;
+            const address = document.getElementById("address").value;
+            const education = document.getElementById("education").value;
+            const experience = document.getElementById("experience").value;
+            const projects = document.getElementById("projects").value;
+
+            localStorage.setItem("profile_contact", contact);
+            localStorage.setItem("profile_email", email);
+            localStorage.setItem("profile_address", address);
+            localStorage.setItem("profile_education", education);
+            localStorage.setItem("profile_experience", experience);
+            localStorage.setItem("profile_projects", projects);
+
+            const profilePic = document.getElementById("profile_pic").files[0];
+            if (profilePic) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    localStorage.setItem("profile_pic", reader.result);
+                    redirectWithName(name);
+                }
+                reader.readAsDataURL(profilePic);
+            } else {
+                redirectWithName(name);
+            }
+        }
+
+        function redirectWithName(name) {
+            const url = `index.html?name=${encodeURIComponent(name)}`;
+            window.location.href = url; // Redirect to URL with the name query parameter
+        }
+    </script>
+
+    </body>
+</html>

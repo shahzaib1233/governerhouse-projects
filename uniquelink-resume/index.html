@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Static Resume Governer House Project !! Shahzaib</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <h1 class="resume-heading">Resume</h1>
+
+    <div class="container">
+        <!-- side bar -->
+        <div class="side-bar-left">
+            <div class="img">
+                <img id="profile_pic_preview" src="default.jpg" class="main-img" alt="Profile Picture">
+                <h2 style="padding: 0px; margin: 0px; color: white;" id="display_name"></h2>
+            </div>
+            <section class="information">
+                <!-- Contact Details -->
+                <section class="contact-details">
+                    <u style="color: white;"><h3 class="headings">Contact Information</h3></u>
+                    <div class="details">
+                        <ul>
+                            <li><i class="fa fa-phone-square" aria-hidden="true"></i>
+                                <span id="display_contact"></span>
+                            </li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i>
+                                <span id="display_email"></span>
+                            </li>
+                            <li><i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+                                <span id="display_address">Kalapul Karachi</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <!-- Education Details -->
+                <section class="Education-details">
+                    <u style="color: white;"><h3 class="headings">Education</h3></u>
+                    <div class="details">
+                        <ul>
+                            <li>
+                                <span id="display_education"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <!-- Skills Details -->
+                <section class="Skills-details">
+                    <u style="color: white;"><h3 class="headings">Skills</h3></u>
+                    <div class="details">
+                        <ul style="list-style: decimal-leading-zero;">
+                            <li>Having Strong Knowledge Of PHP and Laravel</li>
+                            <li>Having Strong Knowledge Of Wordpress</li>
+                            <li>Having Strong Knowledge Of Html, Css, Js, Bootstrap</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <!-- content of right side bar  -->
+            <div class="side-bar-right hideable">
+                <section class="information-right">
+                    <!-- Profile Details -->
+                    <section class="Profile-details">
+                        <u style="color: white;"><h3 class="headings">Profile</h3></u>
+                        <p class="white para">I am a dedicated web
+                            developer with a
+                            strong foundation in creating dynamic and
+                            user-friendly websites.As a front-end and
+                            back-end
+                            developer, I am adept at using frameworks
+                            and tools
+                            to build responsive and visually appealing
+                            web
+                            applications.My commitment to delivering
+                            high-quality results and ability to adapt to
+                            evolving industry trends <br> enables me to
+                            develop
+                            digital solutions that enhance user
+                            experience and
+                            drive business growth.</p>
+                    </section>
+                    <!-- Work Details -->
+                    <section class="Work-details">
+                        <u style="color: white;"><h3 class="headings">Experience</h3></u>
+                        <div class="details">
+                            <ul>
+                                <span class="para" style="color: white;" id="display_experience">Work as a PHP developer</span>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- Projects Details -->
+                    <section class="Projects-details">
+                        <u style="color: white;"><h3 class="headings">Projects Completed</h3></u>
+                        <div class="details-projects">
+                            <ul class="para">
+                                <li>
+                                    <a href="" id="display_projects"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        document.getElementById("display_name").textContent = localStorage.getItem("profile_name");
+        document.getElementById("display_contact").textContent = localStorage.getItem("profile_contact");
+        document.getElementById("display_email").textContent = localStorage.getItem("profile_email");
+        document.getElementById("display_address").textContent = localStorage.getItem("profile_address");
+        document.getElementById("display_education").textContent = localStorage.getItem("profile_education");
+        document.getElementById("display_experience").textContent = localStorage.getItem("profile_experience");
+        document.getElementById("display_projects").textContent = localStorage.getItem("profile_projects");
+
+        const profilePicData = localStorage.getItem("profile_pic");
+        const profilePicElement = document.getElementById("profile_pic_preview");
+        if (profilePicData) {
+            profilePicElement.src = profilePicData;
+        }
+    </script>
+</body>
+</html>
