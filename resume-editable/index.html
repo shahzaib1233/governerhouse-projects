@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Editable Resume Governor House Project</title>
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <body>
+        <h1 class="resume-heading">Resume</h1>
+        <div class="center"
+            style="text-align: center; display: flex; align-items: center; justify-content: center; padding: 0px;">
+            <button class="button editbutton" id="editbutton" onclick="toggleEdit()">Edit</button>
+            <button class="button"  onclick="saveChanges()"
+                style="display: none;"
+                id="save_button">Save</button>
+        </div>
+
+        <div class="container">
+            <!-- side bar -->
+            <div class="side-bar-left">
+                <div class="img">
+                    <img id="profile_pic_preview" src="default.jpg" class="main-img" alt="Profile Picture">
+
+                    <input type="file" id="profile_pic_input" class="edit_field" accept="image/*" onchange="previewImage(event)" style="display: none;">
+
+                    <h2 style="padding: 0px; margin: 0px; color: white;" id="display_name"></h2>
+                    <input type="text" id="edit_name" class="edit_field" style="display: none;">
+                </div>
+                <section class="information">
+                    <section class="contact-details">
+                        <u style="color: white;"><h3 class="headings">Contact
+                                Information</h3></u>
+                        <div class="details">
+                            <ul>
+                                <li><i class="fa fa-phone-square"
+                                        aria-hidden="true"></i>
+                                    <span id="display_contact"></span>
+                                    <input type="tel" id="edit_contact"
+                                        class="edit_field"
+                                        style="display: none;">
+                                </li>
+                                <li><i class="fa fa-envelope"
+                                        aria-hidden="true"></i>
+                                    <span id="display_email"></span>
+                                    <input type="email" id="edit_email"
+                                        class="edit_field"
+                                        style="display: none;">
+                                </li>
+                                <li><i class="fa fa-map-marker-alt"
+                                        aria-hidden="true"></i>
+                                    <span id="display_address"></span>
+                                    <textarea id="edit_address"
+                                        class="edit_field"
+                                        style="display: none;"></textarea>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    <section class="Education-details">
+                        <u style="color: white;"><h3
+                                class="headings">Education</h3></u>
+                        <div class="details">
+                            <ul>
+                                <li><span id="display_education"></span>
+                                    <textarea id="edit_education"
+                                        class="edit_field"
+                                        style="display: none;"></textarea>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    <section class="Skills-details">
+                        <u style="color: white;"><h3
+                                class="headings">Skills</h3></u>
+                        <div class="details">
+                            <ul style="list-style: decimal-leading-zero;">
+                                <li>Having Strong Knowledge Of PHP and
+                                    Laravel</li>
+                                <li>Having Strong Knowledge Of Wordpress</li>
+                                <li>Having Strong Knowledge Of Html, Css, Js,
+                                    Bootstrap</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- right side bar content -->
+                <div class="side-bar-right hideable">
+                    <section class="information-right">
+                        <section class="Profile-details">
+                            <u style="color: white;"><h3
+                                    class="headings">Profile</h3></u>
+                            <p class="white para">I am a dedicated web developer
+                                with a
+                                strong foundation in creating dynamic and
+                                user-friendly websites.
+                            </p>
+                        </section>
+                        <section class="Work-details">
+                            <u style="color: white;"><h3
+                                    class="headings">Experience</h3></u>
+                            <div class="details">
+                                <ul>
+                                    <span class="para" id="display_experience"
+                                        style="color: white;"></span>
+                                    <textarea id="edit_experience"
+                                        class="edit_field"
+                                        style="display: none;"></textarea>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="Projects-details">
+                            <u style="color: white;"><h3
+                                    class="headings">Projects Completed</h3></u>
+                            <div class="details-projects">
+                                <ul class="para">
+                                    <li><a href id="display_projects"></a>
+                                        <textarea id="edit_projects"
+                                            class="edit_field"
+                                            style="display: none;"></textarea>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+        <script>
+            function toggleEdit() {
+                document.querySelectorAll('.edit_field').forEach(el => el.style.display = 'block');
+                document.getElementById('save_button').style.display = 'block';
+                document.getElementById('editbutton').style.display = 'none';
+            }
+
+            document.getElementById("display_name").textContent = localStorage.getItem("profile_name");
+            document.getElementById("display_contact").textContent = localStorage.getItem("profile_contact");
+            document.getElementById("display_email").textContent = localStorage.getItem("profile_email");
+            document.getElementById("display_address").textContent = localStorage.getItem("profile_address");
+            document.getElementById("display_education").textContent = localStorage.getItem("profile_education");
+            document.getElementById("display_experience").textContent = localStorage.getItem("profile_experience");
+            document.getElementById("display_projects").textContent = localStorage.getItem("profile_projects");
+
+            const profilePicData = localStorage.getItem("profile_pic");
+            const profilePicElement = document.getElementById("profile_pic_preview");
+            if (profilePicData) {
+                profilePicElement.src = profilePicData;
+            }
+
+            document.getElementById("edit_name").value = localStorage.getItem("profile_name");
+            document.getElementById("edit_contact").value = localStorage.getItem("profile_contact");
+            document.getElementById("edit_email").value = localStorage.getItem("profile_email");
+            document.getElementById("edit_address").value = localStorage.getItem("profile_address");
+            document.getElementById("edit_education").value = localStorage.getItem("profile_education");
+            document.getElementById("edit_experience").value = localStorage.getItem("profile_experience");
+            document.getElementById("edit_projects").value = localStorage.getItem("profile_projects");
+
+            function previewImage(event) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const output = document.getElementById('profile_pic_preview');
+                    output.src = reader.result;
+                    localStorage.setItem('profile_pic', reader.result); 
+                }
+                reader.readAsDataURL(event.target.files[0]);  
+            }
+
+            function saveChanges() {
+                localStorage.setItem("profile_name", document.getElementById("edit_name").value);
+                localStorage.setItem("profile_contact", document.getElementById("edit_contact").value);
+                localStorage.setItem("profile_email", document.getElementById("edit_email").value);
+                localStorage.setItem("profile_address", document.getElementById("edit_address").value);
+                localStorage.setItem("profile_education", document.getElementById("edit_education").value);
+                localStorage.setItem("profile_experience", document.getElementById("edit_experience").value);
+                localStorage.setItem("profile_projects", document.getElementById("edit_projects").value);
+
+                document.getElementById("display_name").textContent = localStorage.getItem("profile_name");
+                document.getElementById("display_contact").textContent = localStorage.getItem("profile_contact");
+                document.getElementById("display_email").textContent = localStorage.getItem("profile_email");
+                document.getElementById("display_address").textContent = localStorage.getItem("profile_address");
+                document.getElementById("display_education").textContent = localStorage.getItem("profile_education");
+                document.getElementById("display_experience").textContent = localStorage.getItem("profile_experience");
+                document.getElementById("display_projects").textContent = localStorage.getItem("profile_projects");
+
+                document.querySelectorAll('.edit_field').forEach(el => el.style.display = 'none');
+                document.getElementById('save_button').style.display = 'none';
+                document.getElementById('editbutton').style.display = 'block';
+            }
+        </script>
+
+    </body>
+</html>
